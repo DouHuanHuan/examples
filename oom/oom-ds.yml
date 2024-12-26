@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: oom
+spec:
+  selector:
+    matchLabels:
+      app: oom
+  template:
+    metadata:
+      labels:
+        app: oom
+    spec:
+      containers:
+        - name: oom
+          image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/dockeruserdou/oom-py:latest
+          volumeMounts:
+            - mountPath: /data
+              name: oom
+      volumes:
+        - name: oom
+          emptyDir:
+            medium: ""
+            sizeLimit: 1Gi
