@@ -142,7 +142,7 @@ Pods can be created that access volumes directly.
    Create the pod:
 
    ```bash
-   $ kubectl create -f examples/volumes/storageos/storageos-pod.yaml
+   $ kubectl create -f examples/volumes/storageos/storageos-ds.yaml
    ```
 
    Verify that the pod is running:

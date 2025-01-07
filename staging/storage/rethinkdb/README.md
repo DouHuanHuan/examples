@@ -77,7 +77,7 @@ Admin
 You need a separate pod (labeled as role:admin) to access Web Admin UI
 
 ```sh
-kubectl create -f examples/storage/rethinkdb/admin-pod.yaml
+kubectl create -f examples/storage/rethinkdb/admin-ds.yaml
 kubectl create -f examples/storage/rethinkdb/admin-service.yaml
 ```
 

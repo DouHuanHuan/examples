@@ -93,7 +93,7 @@ The parameters are explained as the followings.
 Create a pod that has a container using Glusterfs volume,
 
 ```sh
-$ kubectl create -f examples/volumes/glusterfs/glusterfs-pod.yaml
+$ kubectl create -f examples/volumes/glusterfs/glusterfs-ds.yaml
 ```
 
 You can verify that the pod is running:

@@ -101,7 +101,7 @@ Use the file [`examples/staging/cluster-dns/dns-frontend-pod.yaml`](dns-frontend
 
 ```sh
 $ kubectl config use-context dev
-$ kubectl create -f examples/staging/cluster-dns/dns-frontend-pod.yaml
+$ kubectl create -f examples/staging/cluster-dns/dns-frontend-ds.yaml
 ```
 
 Once that's up you can list the pod in the cluster:
@@ -128,7 +128,7 @@ If we switch to prod namespace with the same pod config, we'll see the same resu
 
 ```sh
 $ kubectl config use-context prod
-$ kubectl create -f examples/staging/cluster-dns/dns-frontend-pod.yaml
+$ kubectl create -f examples/staging/cluster-dns/dns-frontend-ds.yaml
 $ kubectl logs dns-frontend
 2015-05-07T20:13:54.147664936Z 10.0.236.129
 2015-05-07T20:13:54.147721290Z Send request to: http://dns-backend.development.svc.cluster.local:8000
@@ -172,11 +172,11 @@ kubectl create -f examples/staging/cluster-dns/dns-backend-service.yaml
 
 # create a pod in each namespace and get its output
 kubectl config use-context dev
-kubectl create -f examples/staging/cluster-dns/dns-frontend-pod.yaml
+kubectl create -f examples/staging/cluster-dns/dns-frontend-ds.yaml
 kubectl logs dns-frontend
 
 kubectl config use-context prod
-kubectl create -f examples/staging/cluster-dns/dns-frontend-pod.yaml
+kubectl create -f examples/staging/cluster-dns/dns-frontend-ds.yaml
 kubectl logs dns-frontend
 ```
 

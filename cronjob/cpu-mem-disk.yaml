@@ -1,0 +1,111 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  labels:
+    app: cmdb-sync-idc-server-cpu-mem-disk
+  managedFields:
+    - apiVersion: batch/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            .: {}
+            f:app: {}
+        f:spec:
+          f:concurrencyPolicy: {}
+          f:failedJobsHistoryLimit: {}
+          f:jobTemplate:
+            f:metadata:
+              f:labels:
+                .: {}
+                f:app: {}
+            f:spec:
+              f:activeDeadlineSeconds: {}
+              f:backoffLimit: {}
+              f:completions: {}
+              f:parallelism: {}
+              f:template:
+                f:metadata:
+                  f:labels:
+                    .: {}
+                    f:app: {}
+                f:spec:
+                  f:containers:
+                    k:{"name":"sync-idc-server-cpu-mem-disk"}:
+                      .: {}
+                      f:command: {}
+                      f:image: {}
+                      f:imagePullPolicy: {}
+                      f:name: {}
+                      f:resources:
+                        .: {}
+                        f:limits:
+                          .: {}
+                          f:cpu: {}
+                          f:memory: {}
+                      f:terminationMessagePath: {}
+                      f:terminationMessagePolicy: {}
+                  f:dnsPolicy: {}
+                  f:restartPolicy: {}
+                  f:schedulerName: {}
+                  f:securityContext: {}
+                  f:terminationGracePeriodSeconds: {}
+          f:schedule: {}
+          f:successfulJobsHistoryLimit: {}
+          f:suspend: {}
+      manager: dashboard
+      operation: Update
+      time: "2022-03-29T09:46:51Z"
+    - apiVersion: batch/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          f:lastScheduleTime: {}
+      manager: kube-controller-manager
+      operation: Update
+      time: "2025-01-03T02:02:05Z"
+  name: cmdb-sync-idc-server-cpu-mem-disk
+  namespace: cmdb
+  selfLink: /apis/batch/v1beta1/namespaces/cmdb/cronjobs/cmdb-sync-idc-server-cpu-mem-disk
+spec:
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 10
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: cmdb-sync-idc-server-cpu-mem-disk
+    spec:
+      activeDeadlineSeconds: 600
+      backoffLimit: 1
+      completions: 1
+      parallelism: 1
+      template:
+        metadata:
+          creationTimestamp: null
+          labels:
+            app: cmdb-sync-idc-server-cpu-mem-disk
+        spec:
+          containers:
+            - command:
+                - /root/sync_data
+                - -cpu_mem_disk
+              image: harbor.intra.ke.com/dayu/kubeservice/devops/cmdb/sync_tx_could:master.1.0.27
+              imagePullPolicy: IfNotPresent
+              name: sync-idc-server-cpu-mem-disk
+              resources:
+                limits:
+                  cpu: "1"
+                  memory: 1Gi
+              terminationMessagePath: /dev/termination-log
+              terminationMessagePolicy: File
+          dnsPolicy: ClusterFirst
+          restartPolicy: Never
+          schedulerName: default-scheduler
+          securityContext: {}
+          terminationGracePeriodSeconds: 30
+  schedule: 2 10 * * *
+  successfulJobsHistoryLimit: 30
+  suspend: false
+status:
+  lastScheduleTime: "2025-01-03T02:02:00Z"

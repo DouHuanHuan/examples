@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  labels:
+    app: cmdb-sync-asset-code
+    name: cmdb-sync-asset-code
+    namespace: cmdb
+spec:
+  concurrencyPolicy: Replace
+  failedJobsHistoryLimit: 5
+  jobTemplate:
+    metadata:
+      labels:
+        app: cmdb-sync-asset-code
+    spec:
+      template:
+        metadata:
+          labels:
+            app: cmdb-sync-asset-code
+  schedule: 32 12 * * 2
+  successfulJobsHistoryLimit: 10
+  suspend: false

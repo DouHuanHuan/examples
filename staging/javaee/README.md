@@ -12,13 +12,13 @@ In Kubernetes a [_Pod_](https://kubernetes.io/docs/user-guide/pods.md) is the sm
 
 Here is the config for MySQL pod: [mysql-pod.yaml](mysql-pod.yaml)
 
-<!-- BEGIN MUNGE: mysql-pod.yaml -->
+<!-- BEGIN MUNGE: mysql-ds.yaml -->
 <!-- END MUNGE: EXAMPLE -->
 
 Create the MySQL pod:
 
 ```sh
-kubectl create -f examples/javaee/mysql-pod.yaml
+kubectl create -f examples/javaee/mysql-ds.yaml
 ```
 
 Check status of the pod:
@@ -123,7 +123,7 @@ Last login: Thu Jul 16 00:24:36 2015 from 10.0.2.2
 All resources created in this application can be deleted:
 
 ```sh
-kubectl delete -f examples/javaee/mysql-pod.yaml
+kubectl delete -f examples/javaee/mysql-ds.yaml
 kubectl delete -f examples/javaee/mysql-service.yaml
 kubectl delete -f examples/javaee/wildfly-rc.yaml
 ```
