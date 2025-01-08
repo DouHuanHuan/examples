@@ -1,4 +1,4 @@
-# privileged-psp-users gives the privileged-psp-user role
+# privileged-psp-users gives the privileged-psp-user namespace-role
 # to the group privileged-psp-users.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -13,7 +13,7 @@ roleRef:
    kind: ClusterRole
    name: privileged-psp-user
 ---
-# restricted-psp-users grants the restricted-psp-user role to
+# restricted-psp-users grants the restricted-psp-user namespace-role to
 # the groups restricted-psp-users and privileged-psp-users.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -31,7 +31,7 @@ roleRef:
    kind: ClusterRole
    name: restricted-psp-user
 ---
-# edit grants edit role to the groups
+# edit grants edit namespace-role to the groups
 # restricted-psp-users and privileged-psp-users.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding

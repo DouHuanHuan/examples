@@ -3,6 +3,9 @@ kind: RoleBinding
 metadata:
   namespace: default
   name: role-binding-douzengrui
+subjects:
+  - kind: User
+    name: douzengrui-subject
 roleRef:
   kind: Role
   apiGroup: rbac.authorization.k8s.io
