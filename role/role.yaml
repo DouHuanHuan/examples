@@ -7,8 +7,6 @@ rules:
   - apiGroups:
       - ''
     verbs:
-      - get
-      - list
-      - watch
+      - create
     resources:
       - pods
