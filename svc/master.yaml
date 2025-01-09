@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: redis
+spec:
+  containers:
+    - name: redis-master
+      image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/nginx:1.27.0
+      ports:
+        - containerPort: 80
