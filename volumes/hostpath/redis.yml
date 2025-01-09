@@ -17,5 +17,5 @@ spec:
   volumes:
     - name: mount-path
       hostPath:
-        path: /home/douzengrui/test/examples/volumes/hostpath/data
+        path: /home/docker
         type: Directory
