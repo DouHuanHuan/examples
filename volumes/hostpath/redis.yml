@@ -8,8 +8,6 @@ spec:
   containers:
     - name: redis
       image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/library/redis:7.0.14
-      securityContext:
-        privileged: true
       ports:
         - containerPort: 6379
       volumeMounts:
@@ -20,4 +18,4 @@ spec:
     - name: mount-path
       hostPath:
         path: /home/douzengrui/test/examples/volumes/hostpath/data
-        type: DirectoryOrCreate
+        type: Directory

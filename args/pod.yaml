@@ -6,7 +6,6 @@ metadata:
 spec:
   restartPolicy: Always
   containers:
-
     - name: nginx
       command:
         - /bin/sh

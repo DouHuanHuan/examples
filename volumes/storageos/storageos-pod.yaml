@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
     - name: master
-      image: kubernetes/redis:v1
+      image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/library/redis:7.0.14
       env:
         - name: MASTER
           value: "true"
