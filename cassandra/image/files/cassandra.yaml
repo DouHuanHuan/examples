@@ -112,16 +112,16 @@ authorizer: AllowAllAuthorizer
 # Part of the Authentication & Authorization backend, implementing IRoleManager; used
 # to maintain grants and memberships between roles.
 # Out of the box, Cassandra provides org.apache.cassandra.auth.CassandraRoleManager,
-# which stores namespace-role information in the system_auth keyspace. Most functions of the
+# which stores namespace_role information in the system_auth keyspace. Most functions of the
 # IRoleManager require an authenticated login, so unless the configured IAuthenticator
 # actually implements authentication, most of this functionality will be unavailable.
 #
-# - CassandraRoleManager stores namespace-role data in the system_auth keyspace. Please
-#   increase system_auth keyspace replication factor if you use this namespace-role manager.
+# - CassandraRoleManager stores namespace_role data in the system_auth keyspace. Please
+#   increase system_auth keyspace replication factor if you use this namespace_role manager.
 role_manager: CassandraRoleManager
 
 # Validity period for roles cache (fetching granted roles can be an expensive
-# operation depending on the namespace-role manager, CassandraRoleManager is one example)
+# operation depending on the namespace_role manager, CassandraRoleManager is one example)
 # Granted roles are cached for authenticated sessions in AuthenticatedUser and
 # after the period specified here, become eligible for (async) reload.
 # Defaults to 2000, set to 0 to disable caching entirely.

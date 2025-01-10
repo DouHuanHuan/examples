@@ -88,7 +88,7 @@ spec:
         name: newrelic
     spec:
       # Filter to specific nodes:
-      # node-selector:
+      # node_selector:
       #  app: newrelic
       hostPID: true
       hostIPC: true
