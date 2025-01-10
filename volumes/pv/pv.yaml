@@ -8,4 +8,5 @@ spec:
     storage: 1G
   accessModes:
     - ReadWriteOnce
-
+  hostPath:
+    path: /tmp/data
