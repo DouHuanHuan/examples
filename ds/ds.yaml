@@ -10,6 +10,10 @@ spec:
         operator: In
         values:
           - nginx
+    matchLabels:
+      - key: app
+        value: nginx
+
   template:
     metadata:
       labels:
