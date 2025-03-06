@@ -12,7 +12,7 @@ In Kubernetes a [_Pod_](https://kubernetes.io/docs/user-guide/pods.md) is the sm
 
 Here is the config for MySQL pod: [mysql-pod.yaml](mysql-pod.yaml)
 
-<!-- BEGIN MUNGE: mysql-ds.yaml -->
+<!-- BEGIN MUNGE: mysql-affinity.yaml -->
 <!-- END MUNGE: EXAMPLE -->
 
 Create the MySQL pod:

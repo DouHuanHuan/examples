@@ -3,18 +3,19 @@ kind: Deployment
 metadata:
   name: nginx
 spec:
-  replicas: 3
+  replicas: 1
   strategy:
     rollingUpdate:
       maxSurge: 2
       maxUnavailable: 2
   selector:
     matchLabels:
-      app: nginx
+      k8s-app: nodelocaldns
   template:
     metadata:
       labels:
         app: nginx
+        k8s-app: nodelocaldns
     spec:
       containers:
         - name: nginx
@@ -23,3 +24,4 @@ spec:
           ports:
             - containerPort: 80
 
+# nameserver 172.16.33.149

@@ -32,7 +32,7 @@ Quobyte supports since 1.3 fixed user mounts. The fixed-user mounts simply allow
 
 See example:
 
-<!-- BEGIN MUNGE: EXAMPLE ./quobyte-ds.yaml -->
+<!-- BEGIN MUNGE: EXAMPLE ./quobyte-affinity.yaml -->
 
 ```yaml
 apiVersion: v1
@@ -57,7 +57,7 @@ spec:
 ```
 
 [Download example](quobyte-pod.yaml?raw=true)
-<!-- END MUNGE: EXAMPLE ./quobyte-ds.yaml -->
+<!-- END MUNGE: EXAMPLE ./quobyte-affinity.yaml -->
 
 Parameters:
 * **registry** Quobyte registry to use to mount the volume. You can specify the registry as <host>:<port> pair or if you want to specify multiple registries you just have to put a comma between them e.q. <host1>:<port>,<host2>:<port>,<host3>:<port>. The host can be an IP address or if you have a working DNS you can also provide the DNS names.

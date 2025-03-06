@@ -1,26 +1,91 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: redis
-  namespace: default
-  labels:
-    app: redis
+  name: master
 spec:
-  containers:
-    - name: redis
-      image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/library/redis:7.0.14
-      ports:
-        - containerPort: 6379
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+      role: master
+  template:
+    metadata:
+      labels:
+        app: redis
+        role: master
+    spec:
+      containers:
+        - name: redis
+          image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/quay.io/opstree/redis:v7.0.5
+          ports:
+            - containerPort: 6379
+          command:
+            - "redis-server"
+            - "--appendonly"
+            - "yes"
+            - "--protected-mode"
+            - "no"
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: slave
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: redis
+      role: slave
+  template:
+    metadata:
+      labels:
+        app: redis
+        role: slave
+    spec:
+      containers:
+        - name: redis
+          image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/quay.io/opstree/redis:v7.0.5
+          ports:
+            - containerPort: 6379
+          command:
+            - "redis-server"
+            - "--appendonly"
+            - "yes"
+            - "--slaveof"
+            - "redis-master"  # 主节点服务名
+            - "6379"
+            - "--protected-mode"
+            - "no"
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: redis-service
-  namespace: default
+  name: redis-master
 spec:
   selector:
     app: redis
-  type: NodePort
+    role: master
   ports:
-    - port: 6379
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+spec:
+  selector:
+    app: redis
+  ports:
+    - protocol: TCP
+      port: 6379
       targetPort: 6379
