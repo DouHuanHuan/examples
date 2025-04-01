@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: rolling-update
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: rolling-update
@@ -16,10 +16,10 @@ spec:
         - name: rolling-update
           image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/quay.io/opstree/redis:v7.0.5
           ports:
-            - containerPort: 63791
+            - containerPort: 6379
 
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 0
-      maxUnavailable: 1
+      maxSurge: 1
+      maxUnavailable: 0

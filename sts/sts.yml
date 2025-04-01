@@ -1,29 +1,56 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  labels:
+    app: redis
+spec:
+  clusterIP: None
+  selector:
+    app: redis
+  ports:
+    - name: redis
+      port: 6379
+---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: nginx-statefulset
+  name: redis
+  labels:
+    app: redis
 spec:
-  serviceName: "nginx-service"
+  serviceName: redis
   replicas: 3
   selector:
     matchLabels:
-      app: nginx
+      app: redis
   template:
     metadata:
       labels:
-        app: nginx
+        app: redis
     spec:
       containers:
-        - name: nginx
-          image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/nginx:1.27.0
+        - name: redis
+          image: redis:7-alpine
           ports:
-            - containerPort: 80
+            - containerPort: 6379
           volumeMounts:
-            - name: www
-              mountPath: /usr/share/nginx/html
+            - name: data
+              mountPath: /data
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              if [ $(hostname) == "redis-0" ]; then
+                redis-server --appendonly yes
+              else
+                until redis-cli -h redis-0.redis ping; do
+                  sleep 1
+                done
+                redis-server --appendonly yes --replicaof redis-0.redis 6379
+              fi
   volumeClaimTemplates:
     - metadata:
-        name: www
+        name: data
       spec:
         accessModes: [ "ReadWriteOnce" ]
         resources:
