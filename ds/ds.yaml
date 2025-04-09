@@ -13,7 +13,6 @@ spec:
     matchLabels:
       - key: app
         value: nginx
-
   template:
     metadata:
       labels:
