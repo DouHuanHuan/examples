@@ -3,10 +3,6 @@ kind: ReplicaSet
 metadata:
   namespace: default
   name: nginx
-#spec:
-#  containers:
-#    - name: nginx
-#      image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/nginx:1.27.0
 spec:
   replicas: 2
   selector:

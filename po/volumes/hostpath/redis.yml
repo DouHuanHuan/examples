@@ -13,7 +13,6 @@ spec:
       volumeMounts:
         - mountPath: /data
           name: mount-path
-
   volumes:
     - name: mount-path
       hostPath:
